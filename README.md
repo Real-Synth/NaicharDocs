@@ -1,2 +1,0 @@
-# SimulacronDocs
-RealSynth Simulacron Documentation
