@@ -2,7 +2,7 @@
                     **RealSynth Simulacron**
           **Ground Truth Image Synthesis and Simulation**
 
-RealSynth Simulacron is a aource code customization of the Unreal Engine 4 (UE4) and provides the following main features:
+RealSynth Simulacron is a source code customization of the Unreal Engine 4 (UE4) and provides the following main features:
  * Image Segmentation
  * Mesh, Instance, and Material based Labeling
 
@@ -13,31 +13,74 @@ This documentation expects the user to know the basics of how to operate the UE4
 Ground Truth Rendering
 ===============================================================
 
-Preview
+Renders pixel accurate labels for each mesh, instance, and material.
+
+Ground Truth View Mode
 ---------------------------------------------------------------
-The following image shows how to enable the Ground Truth Rendering preview in the Editor:
 
+![The Ground Truth Rendering can be previewed in the Editor](images/ground_truth_preview_editor.jpg)
 
+To enable the Ground Truth View Mode when running without the editor execute the following console command:
 ``` 
-console command: viewmode groundtruth
+viewmode groundtruth
+```
+To get back to the default rendering mode enter the following command to the console:
+``` 
+viewmode lit
 ```
 
-Ground Truth Render Options
+Render Image Segmentation in real-time
 ---------------------------------------------------------------
+
+![Real-time scene captures including Image Segmentation can be achieved by placing SceneCapture2D Actors.](images/scene_capture_2d.jpg)
+
+This functionality can be used for closed-loop systems such as verification of a computer vision model.
+
+Render Image Segmentation to disk
+---------------------------------------------------------------
+Cinematic Sequence Rendering is used to render segmented images to disk. 
+Once a sequence is set up it should be rendered with the following settings to output the Segmented Images along with the final image rendering to the Ground Truth Capture Output Path. See Output Path Subsection.
+
+This functionality can be used to create a large segmented dataset of images for training of a computer vision model.
+
+Labeling Plugin
+---------------------------------------------------------------
+
+![To configue Labels and access Labeling options the Labeling Plugin needs to be activated first.](images/labeling_plugin.png)
 
 Labeling Editor
 ---------------------------------------------------------------
 
-Image
-Youtube Video
+![Changing the labels of whole object classes using the Labeling Editor is as easy as it can get.](https://www.youtube.com/watch?v=Y_YLS6iFEFs width="680px" height="390px")
+
+The Labeling Editor maps regular expressions to object instances in the level. Each expression can be assigned to a label from the provided KITTI label file. Any changes to the label mapping is automatically saved.
 
 Settings
 ---------------------------------------------------------------
-*Ground Truth Capture Path*
+
+![The Labeling Plugin can be configured through the Plugin Settings functionality of the UE4 Editor.](images/labeling_settings.png)
+
+### Label Path
+...
+
+KITTI Format
+
+### Output Path
 
 The directory at where to export the image data to can be set via the command line parameter GroundTruthCapturePath="/absolute/dir/".
 The default value is "C:\temp\ground_truth" which obviously only works on windows.
 
+### Use Instance Segmentation
+
+RealSynth supports two different Ground Truth render modes. You can select between Ground Truth per Object (left image) and Ground Truth
+per Object Class (right image).
+
+Ground Truth per Object means that each object can be uniquely identified while in the Object Class Ground Truth mode it cannot
+be distinguished between objects of the same class that overlap in the image. The latter is usually used for deep learning of image segmentation
+and the former can be used to extract annotations like bounding boxes in image space.
+the Per Object Ground Truth Render mode is per default enabled. To switch to the Object Class Ground Truth mode a file called
+"_label_colors.txt" has to be put into the Ground Truth Capture Path. See the attached _label_colors.txt as an example to see how the format and
+expected content looks like.
 
 <!-- Markdeep: -->
 
