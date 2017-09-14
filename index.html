@@ -2,7 +2,7 @@
                     **RealSynth Simulacron**
           **Ground Truth Image Synthesis and Simulation**
 
-RealSynth Simulacron is a source code customization of the Unreal Engine 4 (UE4) and provides the following main features:
+RealSynth Simulacron is a customization of the Unreal Engine 4 (UE4) and provides the following main features:
  * Image Segmentation
  * Mesh, Instance, and Material based Labeling
 
@@ -40,23 +40,23 @@ Render Image Segmentation to disk
 ---------------------------------------------------------------
 
 
-![Cinematic Sequence Rendering is used to render segmented images to disk. Once a sequence is set up it should be rendered with the following settings to output the Segmented Images along with the final image rendering to the Ground Truth Capture Output Path.](images/sequence_output_settings.png)
+![Cinematic Sequence Rendering is used to render segmented images to disk. Once a sequence is set up it should be rendered using the following settings to output the Segmented Images along with the final image rendering to the Ground Truth Capture Output Path.](images/sequence_output_settings.png)
 
-See Output Path Subsection for more details.
+See Output Path subsection for more details.
 
-This functionality can be used to create a large segmented dataset of images for training of a computer vision model.
+This functionality can be used to create a large reproducable dataset of segmented images for training of a computer vision model.
 
 Labeling Plugin
 ---------------------------------------------------------------
 
-![To configue Labels and access Labeling options the Labeling Plugin needs to be activated first.](images/labeling_plugin.png)
+![To configure labels and access labeling options the Labeling Plugin needs to be activated first.](images/labeling_plugin.png)
 
 Labeling Editor
 ---------------------------------------------------------------
 
-![Changing labels of whole object classes using the Labeling Editor works as follows: Open the Labeling Editor Mode and select an object you want to change its label of. Enter an expression that also maps to similar objects in that object class and select a label from the drop down menu.](https://www.youtube.com/watch?v=Y_YLS6iFEFs width="680px" height="390px")
+![Changing labels of whole object classes using the Labeling Editor works as follows: Open the Labeling Editor Mode and select an object you want to change its label of. Enter an expression that also matches to similar objects within the same object class and select a label from the drop down menu.](https://www.youtube.com/watch?v=Y_YLS6iFEFs width="680px" height="390px")
 
-The Labeling Editor maps regular expressions to object instances in the level. Each expression can be assigned to a predefined label from the provided KITTI label file. Any changes to the label mapping is automatically saved.
+The Labeling Editor matches regular expressions to object instances in the level. Each expression can be assigned to a predefined label from the provided KITTI label file. See Label Path subsection for more details on the file format. Any changes to the label mapping is automatically saved. 
 
 ![Existing label mappings can be replaced by adding a new mapping. Each new mapping is prioritized over previously created mappings even if they would match the same instance identifiers.](images/labeling_editor.png)
 
@@ -66,16 +66,16 @@ Settings
 ![The Labeling Plugin can be configured through the Plugin Settings functionality of the UE4 Editor.](images/labeling_settings.png)
 
 ### Label Path
-The Label Path is either absolute or relative to the project root directory. A file named "_label_colors.txt" is expected to exist in this directory. It is a KITTI label file. See the [example](_label_colors.txt) of how it should look like.
+The Label Path is either absolute or relative to the project root directory. A file named "_label_colors.txt" is expected to exist in this directory. It is a KITTI label file. See the [example](https://raw.githubusercontent.com/Real-Synth/SimulacronDocs/master/_label_colors.txt) of how the format looks like.
 
 ### Output Path
 
-This path points to the directory where to export the segmented image data. It's either absolute or relative to the project root directory.
+This path points to the directory where to export the segmented image data to. It is either absolute or relative to the project root directory.
 False colored images are exported along the segmented annotations. Please use the appropriate Final Image Renderings of the Cinematic Sequence Rendering instead when combining the annotations with synthetic images.
 
 ### Use Instance Segmentation
 
-Two different Ground Truth render modes are supported. You can select between Segmentation by Semantic Class and Segmentation by Semantic Class and Instance (Instance Segmentation).
+Two different Ground Truth render modes are supported. You can select between Segmentation by Semantic Class and Segmentation by Instance (Instance Segmentation).
 
 The latter means that each object can be uniquely identified while in the former mode it cannot be distinguished between objects of the same class that overlap in the image. Instance Segmentation can be used to extract annotations like bounding boxes in image space and Learn Energy Landscapes of object classes. Semantic Class Segmentation is usually used for deep learning of image segmentation and is the default segmentation mode.
 
