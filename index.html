@@ -5,6 +5,7 @@
 RealSynth Simulacron is a customization of the Unreal Engine 4 (UE4) and provides the following main features:
  * Image Segmentation
  * Mesh, Instance, and Material based Labeling
+ * Image Sequence and Video Capturing
 
 The main use of Simulacron is Ground Truth Image Synthesis and Simulation.
 
@@ -39,8 +40,11 @@ This functionality can be used for closed-loop systems such as verification of a
 Render Image Segmentation to disk
 ---------------------------------------------------------------
 
+Two capture modes are supported. To capture image sequences or videos during simulation runtime, use the [RealTimeCapture Plugin](realtimecapture.html).
 
-![Cinematic Sequence Rendering is used to render segmented images to disk. Once a sequence is set up it should be rendered using the following settings to output the Segmented Images along with the final image rendering to the Ground Truth Capture Output Path.](images/sequence_output_settings.png)
+Cinematic Sequence Rendering can also be used to render segmented images to disk in a controllable, repeatable fashion. 
+
+![Once a sequence is set up it should be rendered using the following settings to output the Segmented Images along with the final image rendering to the Ground Truth Capture Output Path.](images/sequence_output_settings.png)
 
 See Output Path subsection for more details.
 
@@ -63,7 +67,7 @@ The Labeling Editor matches regular expressions to object instances in the level
 Settings
 ---------------------------------------------------------------
 
-![The Labeling Plugin can be configured through the Plugin Settings functionality of the UE4 Editor.](images/labeling_settings.png)
+![The Labeling Plugin can be configured through the Plugin Settings functionality of the UE4 Editor. The Editor has to be restarted before any changes to the settings take effect.](images/labeling_settings.png)
 
 ### Label Path
 The Label Path is either absolute or relative to the project root directory. A file named "_label_colors.txt" is expected to exist in this directory. It is a KITTI label file. See the [example](https://raw.githubusercontent.com/Real-Synth/SimulacronDocs/master/_label_colors.txt) of how the format looks like.
