@@ -14,14 +14,14 @@ The FFmpeg toolchain is used to write out image sequences or videos to disk. Her
 
  * FFmpeg supports a wide variety of output formats
  * Encoding happens in a separate process
- * Various video codecs could not be used otherwise (e.g. by linking a library) because of incompatible licenses
+ * Various video codecs could not be used otherwise because of incompatible licenses (e.g. prohibited linking of a GPL library)
 
 Prerequisites
 ---------------------------------------------------------------
 
 Before the plugin can be used the following conditions have to be met: 
 
- * A recent FFmpeg build (e.g 20170915-6743351) needs to be present on the machine.
+ * A recent build of the [FFmpeg toolchain](https://ffmpeg.org/) (e.g 20170915-6743351) needs to be present on the machine.
 
 RealTimeCapture Plugin
 ---------------------------------------------------------------
@@ -31,7 +31,7 @@ RealTimeCapture Plugin
 Settings
 ---------------------------------------------------------------
 
-![The location of the ffmpeg executable can be configured in the project's plugin settings category. If FFmpeg is accessible via the PATH environment variable this field can be left empty.](images/realtimecapture_settings.png)
+![The location of the FFmpeg executable can be configured in the project's plugin settings category. If FFmpeg is accessible via the PATH environment variable this field can be left empty.](images/realtimecapture_settings.png)
 
 RealTimeCaptureComponent
 ---------------------------------------------------------------
@@ -46,12 +46,18 @@ Some encoders are preselected to facilitate the setup:
  * __x264__ provides a fast lossless compressed YUV stream that is optimal for visual images.
  * __PNG__ provides a slow lossless compressed RGBA image sequence output.
 
+ 
+![Toggling the capturing process during simulation time using the keyboard can be achieved by a simple Level Blueprint setup.](images/realtimecapture_toggle_blueprint.png)
+
+
 LabeledSceneCapture Blueprint
 ---------------------------------------------------------------
 
 A Blueprint is provided to facilitate the use of the RealTimeCaptureComponent. It is an ActorBlueprint that represents a ground truth camera. Two components of the type SceneCaptureComponent2D are attached to capture the scene in its natural and segmented form. To capture their respective RenderTargetTextures two RealTimeCaptureComponents are added.
 
-![LabeledSceneCapture_Blueprint can be found in the Plugin's Content folder.](images/realtimecapture_content.png)
+![The Asset named LabeledSceneCapture_Blueprint can be found in the Plugin's Content folder.](images/realtimecapture_content.png)
+
+
 
 <!-- Markdeep: -->
 
