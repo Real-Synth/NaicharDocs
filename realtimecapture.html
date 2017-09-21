@@ -3,21 +3,23 @@
                **Video and Image Sequence Capturing**
 
 RealSynth RealTimeCapture Plugin is part of [RealSynth Simulacron](index.html).
+
+This plugin's purpose is capturing image sequences or videos during simulation runtime.
 This plugin is still in Beta.
 
 RealTimeCapture
 ===============================================================
 
-FFmpeg is used to write out image sequences or videos to disk.
+The FFmpeg toolchain is used to write out image sequences or videos to disk. Here are some benefits:
 
  * FFmpeg supports a wide variety of output formats
  * Encoding happens in a separate process
-
+ * Various video codecs could not be used otherwise (e.g. by linking a library) because of incompatible licenses
 
 Prerequisites
 ---------------------------------------------------------------
 
-Before the plugin can be used, the following conditions have to be met: 
+Before the plugin can be used the following conditions have to be met: 
 
  * A recent FFmpeg build (e.g 20170915-6743351) needs to be present on the machine.
 
@@ -42,7 +44,7 @@ Some encoders are preselected to facilitate the setup:
 
  * __Huffyuv__ provides a fast lossless compressed RGB stream that fits the needs of data videos like segmented images or surface distance/normals.
  * __x264__ provides a fast lossless compressed YUV stream that is optimal for visual images.
- * __PNG__ provides a slow lossless compressed RGBA image output.
+ * __PNG__ provides a slow lossless compressed RGBA image sequence output.
 
 LabeledSceneCapture Blueprint
 ---------------------------------------------------------------
